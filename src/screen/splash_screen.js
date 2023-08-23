@@ -1,16 +1,24 @@
 import React, {useRef, useEffect} from 'react';
-import {View, Image, SafeAreaView, StatusBar, Animated, Easing} from 'react-native';
+import {
+  View,
+  Image,
+  SafeAreaView,
+  StatusBar,
+  Animated,
+  Easing,
+  ActivityIndicator
+} from 'react-native';
 
 export default function Splash() {
   const fadeAnim = useRef(new Animated.Value(0)).current;
-
   // useEffect(() => {
   //   const timer = setTimeout(() => {
   //     navigation.navigate('Home');
   //   }, 1000);
   //   return () => clearTimeout(timer);
   // }, []);
-
+  // const SCALE = useRef(new Animated.Value(0)).current;
+  // SCALE.animate({0:{rotate:0}, 1:{rotate:1}})
   const fadeIn = () => {
     Animated.timing(fadeAnim, {
       toValue: 1,
@@ -19,6 +27,11 @@ export default function Splash() {
       easing: Easing.elastic(4),
     }).start();
   };
+
+  const size = fadeAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: [0, 300],
+  });
 
   useEffect(fadeIn, [fadeAnim]);
 
@@ -34,7 +47,7 @@ export default function Splash() {
         }}>
         <Animated.Image
           style={{
-            height: 300,
+            height: size,
             resizeMode: 'contain',
             opacity: fadeAnim,
           }}
@@ -49,6 +62,9 @@ export default function Splash() {
           }}
           source={require('../asset/logo_nike.jpg')}
         />
+      </View>
+      <View style={{justifyContent: 'center', alignItems: 'center', marginBottom:20}}>
+        <ActivityIndicator size="large" color="#000" />
       </View>
     </SafeAreaView>
   );
