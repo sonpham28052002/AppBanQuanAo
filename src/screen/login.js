@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import {
   View,
   Text,
@@ -8,8 +8,11 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
+import {CheckBox, Icon} from '@rneui/themed';
+
 export default function login() {
   const check = useRef(true);
+  const [check1, setCheck1] = useState(false);
   const [isSelected, setSelection] = React.useState(check.current);
   return (
     <SafeAreaView style={styles.container}>
@@ -64,18 +67,21 @@ export default function login() {
           marginTop: 5,
         }}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <View
-            style={{
-              height: 15,
-              width: 15,
-              borderWidth: 1,
-              borderRadius: 5,
-              borderColor: 'white',
-              marginRight: 5,
-            }}></View>
-          <Text>Forgot Password?</Text>
+          <CheckBox
+            containerStyle={{backgroundColor: '#6441A5' }}
+            wrapperStyle= {{backgroundColor: '#6441A5' }}
+            textStyle={{color: 'white'}}
+            title="Reamember me"
+            checked={check1}
+            onPress={() => setCheck1(!check1)}
+          />
         </View>
-        <Text style={{color: 'white', fontStyle: 'normal', fontWeight: 'bold', textDecorationLine:'underline' }}>
+        <Text
+          style={{
+            fontStyle: 'normal',
+            fontWeight: 'bold',
+            textDecorationLine: 'underline',
+          }}>
           Forgot Password?
         </Text>
       </View>
@@ -112,7 +118,6 @@ export default function login() {
             fontSize: 18,
             textDecorationLine: 'underline',
             textDecorationColor: 'white',
-            
           }}>
           Sign Up
         </Text>

@@ -3,8 +3,8 @@
  */
 
 import {AppRegistry} from 'react-native';
-// import index from './src/screen/index';
-import index from './src/screen/login.js';
+// import index from './src/screen/index1.js';
+import test from './src/screen/splash.js';
 import {name as appName} from './app.json';
 
-AppRegistry.registerComponent(appName, () => index);
+AppRegistry.registerComponent(appName, () => test);

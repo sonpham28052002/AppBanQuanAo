@@ -9,7 +9,7 @@ import {
   Image,
   StatusBar,
 } from 'react-native';
-import a from '../asset/onboard.png';
+
 export default function App() {
   const refView = useRef(0);
   const [docu, setDocu] = useState(refView.current);
